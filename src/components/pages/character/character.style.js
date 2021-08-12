@@ -22,6 +22,14 @@ export const Body = styled.div`
     height: 100vh;
     box-sizing: border-box;
     display: flex;
+    flex-direction: column ;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
+
+    .back-arrow {
+        margin-left: 45px;
+        font-size: 40px;
+        color: #2F4368;
+        cursor: pointer;
+    }
 `;

@@ -1,36 +1,37 @@
 import { CardContainer, ImageContainer, ImageSection, InfoSection, RowContainer } from './card.style';
 import { FaSourcetree, FaMapMarkerAlt, FaMarsStroke } from 'react-icons/fa';
 
-const Card = () => {
+const Card = ({imageUrl, name, status, species, type, gender, origin, location}) => {
+
     return (
         <CardContainer>
             <ImageSection>
                 <ImageContainer>
-                    <img className="character-picture" src="https://rickandmortyapi.com/api/character/avatar/8.jpeg" alt="character"/>
+                    <img className="character-picture" src={imageUrl} alt="character"/>
                 </ImageContainer>
             </ImageSection>
             <InfoSection>
-                <h1 className="name">Rick Sanchez</h1>
+                <h1 className="name">{name}</h1>
                 <RowContainer className="remove-margin">
-                    <p className="status">Alive</p>
+                    <p className="status">Status: {status}</p>
                 </RowContainer>
                 <RowContainer className="remove-margin">
-                    <p>Human</p>
+                    <p>Species: {species}</p>
                 </RowContainer>
                 <RowContainer className="remove-margin">
-                    <p>Superhuman (Ghost trains summoner)</p>
+                    <p>Type: {type}</p>
                 </RowContainer>
                 <RowContainer className="remove-margin">
                     <FaMarsStroke className="icon"/>
-                    <p>Male</p>
+                    <p>{gender}</p>
                 </RowContainer>
                 <RowContainer className="remove-margin">
                     <FaSourcetree className="icon"/>
-                    <p>Earth (C-137)</p>
+                    <p>Origin: {origin}</p>
                 </RowContainer>
                 <RowContainer className="remove-margin">
                     <FaMapMarkerAlt className="icon"/>
-                    <p>Earth (Replacement Dimension)</p>
+                    <p>Location: {location}</p>
                 </RowContainer>
             </InfoSection>
         </CardContainer>

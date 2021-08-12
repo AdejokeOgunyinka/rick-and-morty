@@ -46,7 +46,7 @@ export const DropdownContainer = styled.div`
 
 export const BottomSection = styled.div`
     width: 100%;
-    /* height: 150px; */
+    /* height: 1500px; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;

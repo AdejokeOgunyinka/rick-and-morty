@@ -22,15 +22,29 @@ export const RowCardContainer = styled.div`
         src: local('GetSchwifty'), url(${GetSwitchy}) format('truetype');
     }
 
+    .red-icon-color {
+        color: red;
+    }
+
+    .white-icon-color {
+        color: #EAEAEA;
+    }
+
     .name {
         font-family: 'GetSchwifty';
         font-size: 27px;
+        cursor: pointer;
+    }
+
+    .pointer {
+        cursor: pointer;
     }
 
     .status {
         font-style: italic;
         color: #F7C49D;
         font-size: 20px;
+        cursor: pointer;
     }
 `;
 
@@ -42,6 +56,7 @@ export const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 
     .character-image {
         width: 100%;
@@ -51,6 +66,7 @@ export const ImageContainer = styled.div`
 `;
 
 export const FavouriteIcon = styled(FaHeart)`
-    color: white;
+    color: #EAEAEA;
     font-size: 27px;
+    cursor: pointer;
 `;

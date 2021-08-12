@@ -43,12 +43,32 @@ export const MenuTabContainer = styled.div`
         .icon { 
             color: #F7C49D;
         }
+
+        .text {
+            color: #F7C49D;
+        }
+    }
+
+    .active{
+        /* border-right: 4px solid #F7C49D; */
+
+        .menu-tab-hover {
+            color: #F7C49D;
+        }
+
+        .icon { 
+            color: #F7C49D;
+        }
+
+        .text{
+            color: #F7C49D;
+        }
     }
 
 `;
 
 export const MenuTabContainerInner = styled.div`
-    width: 30%;
+    width: 35%;
     height: 20px;
     display: flex;
     align-items: center;
@@ -56,6 +76,16 @@ export const MenuTabContainerInner = styled.div`
 
     .icon {
         margin-right: 10px;
+        color: #2F4368;
+    }
+
+    .link {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
         color: #2F4368;
     }
 `;
