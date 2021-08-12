@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CharactersContainer = styled.div`
+export const PageTemplateContainer = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
@@ -21,6 +21,13 @@ export const Body = styled.div`
     flex-basis: 75%;
     height: 100vh;
     box-sizing: border-box;
+
+    .back-arrow {
+        margin-right: 830px;
+        font-size: 40px;
+        color: #2F4368;
+        cursor: pointer;
+    }
 `;
 
 export const TopSection = styled.div`
@@ -30,8 +37,6 @@ export const TopSection = styled.div`
     justify-content: space-around;
     align-items: center;
     box-sizing: border-box;
-    position: sticky;
-    top: 0;
 `;
 
 export const SearchContainer = styled.div`
@@ -46,10 +51,8 @@ export const DropdownContainer = styled.div`
 
 export const BottomSection = styled.div`
     width: 100%;
-    /* height: 1500px; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    /* box-sizing: border-box; */
 `;

@@ -1,10 +1,7 @@
 import {
     FETCH_CHARACTERS_FAILURE, 
     FETCH_CHARACTERS_SUCCESS, 
-    FETCH_CHARACTERS_REQUEST, 
-    // fetchCharactersFailure, 
-    // fetchCharactersRequest, 
-    // fetchCharactersSuccess
+    FETCH_CHARACTERS_REQUEST
 } from '../actions/characters';
 
 const initialState = {

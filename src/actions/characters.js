@@ -37,10 +37,10 @@ export const fetchCharacters = (url) => {
             .then(response => {
                 //response.data
                 const characters = response.data["results"];
-                const nextUrl = response.data["info"]["next"];
-                const count = response.data["info"]["count"];
+                // const nextUrl = response.data["info"]["next"];
+                // const count = response.data["info"]["count"];
 
-                dispatch(fetchCharactersSuccess(characters, nextUrl, count));
+                dispatch(fetchCharactersSuccess(characters));
             })
             .catch(error => {
                 // error.message
