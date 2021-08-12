@@ -14,3 +14,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.loader-container {
+  margin: 0;
+  display: flex;
+  align-content: center;
+}
+
+.loader {
+  width: 30px;
+  height: 30px;
+  animation: loading 1s infinite ease-out;
+  margin: auto;
+  border-radius: 50%;
+  background-color: red;
+}
+@keyframes loading {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(8);
+    opacity: 0;
+  }
+}

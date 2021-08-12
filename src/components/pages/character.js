@@ -36,7 +36,10 @@ const Character = ({match}) => {
                 location={location.name}
             />
         </PageTemplate> :
-        <h1>Loading...</h1>
+        <div className="loader-container">
+            <div className="loader"></div>
+        </div>
+
     )
 };
 
