@@ -8,7 +8,7 @@ import { fetchCharacter } from "../../actions/character";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const Character = ({match}) => {
-    const { characterReducer:{ character }, 
+    const { characterReducer:{ character:{image, name, status, species, type, gender, origin, location}, fetchCharacterSuccess }, 
             charactersReducer:{ characters }}= useSelector( state => state );
 
     const [filteredCharacters,setFilteredCharacters] = useState([]);
@@ -20,22 +20,23 @@ const Character = ({match}) => {
         Store.dispatch(fetchCharacter(`https://rickandmortyapi.com/api/character/${id}`));
 
     }, [id]);
- 
+
     return (
         //imageUrl, name, status, species, type, gender, origin, location
-        <PageTemplate data={characters} filteredData={filteredCharacters} setFilteredData={setFilteredCharacters}>
+        fetchCharacterSuccess ? <PageTemplate data={characters} filteredData={filteredCharacters} setFilteredData={setFilteredCharacters}>
             <FaArrowAltCircleLeft onClick={() => history.goBack()} className="back-arrow"/>
             <Card 
-                imageUrl={character.image} 
-                name={character.name}
-                status={character.status}
-                species={character.species}
-                type={character.type}
-                gender={character.gender}
-                origin={character.origin.name}
-                location={character.location.name}
+                imageUrl={image} 
+                name={name}
+                status={status}
+                species={species}
+                type={type}
+                gender={gender}
+                origin={origin.name}
+                location={location.name}
             />
-        </PageTemplate>
+        </PageTemplate> :
+        <h1>Loading...</h1>
     )
 };
 

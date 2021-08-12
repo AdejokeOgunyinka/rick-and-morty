@@ -7,7 +7,8 @@ import {
 const initialState = {
     loading: false,
     character: {},
-    error: ""
+    error: "",
+    fetchCharacterSuccess: false
 }
 
 export const characterReducer = (state = initialState, action) => {
@@ -17,6 +18,7 @@ export const characterReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 character: {},
+                fetchCharacterSuccess:false
             }
 
         case FETCH_CHARACTER_SUCCESS:
@@ -24,7 +26,9 @@ export const characterReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 character: action.payload,
-                error: ""
+                error: "",
+                fetchCharacterSuccess:true
+
             }
         
         case FETCH_CHARACTER_FAILURE:
@@ -32,7 +36,8 @@ export const characterReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 character: {},
-                error: action.payload
+                error: action.payload,
+                fetchCharacterSuccess:false
             }
         
         default:
