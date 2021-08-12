@@ -19,7 +19,7 @@ const Character = ({match}) => {
     useEffect(() => {
         Store.dispatch(fetchCharacter(`https://rickandmortyapi.com/api/character/${id}`));
 
-    }, []);
+    }, [id]);
  
     return (
         //imageUrl, name, status, species, type, gender, origin, location

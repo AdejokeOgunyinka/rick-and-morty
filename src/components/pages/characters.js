@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { useHistory } from "react-router-dom";
 import Store from '../../store';
 import { fetchCharacters } from '../../actions/characters';
