@@ -79,7 +79,7 @@ const Characters = () => {
                                         gender={character.gender}
                                         key={character.id}
                                         onClick={() => Store.dispatch(addToFavourites(character))}
-                                        onClickCard={() => history.push(`/character/${character.id}`)}
+                                        onClickCard={() => history.push(`/characters/${character.id}`)}
                                         isFavourite={checkIfFavourite(character.id)}
                                     />
                                 )
