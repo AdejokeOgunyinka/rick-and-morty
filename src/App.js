@@ -13,10 +13,10 @@ const App = () => {
       <Router>
         <Provider store={Store}>
           <Route path="/" exact component={Characters}/>
-          <Route path="/characters/:id" component={Character}/>
-          <Route path="/characters" component={Characters}/>
-          <Route path="/favourites" component={Favourites}/>
-          <Route path="/search/:keyword" component={SearchResults} />
+          <Route path="/characters/:id" exact component={Character}/>
+          <Route path="/characters" exact component={Characters}/>
+          <Route path="/favourites" exact component={Favourites}/>
+          <Route path="/search/:keyword" exact component={SearchResults} />
         </Provider>
       </Router>
     </div>
