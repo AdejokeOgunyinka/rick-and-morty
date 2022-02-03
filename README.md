@@ -1,6 +1,8 @@
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It is a web application that shows the characters in the popular TV show, Ricky and Morty. It
+also allows you to choose your favourites.
 
 ## Available Scripts
 
