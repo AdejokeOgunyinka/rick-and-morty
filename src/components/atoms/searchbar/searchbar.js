@@ -1,22 +1,26 @@
-import React, { useState } from 'react';
-import { useHistory } from "react-router-dom";
-import { SearchBarContainer, SearchIcon } from './searchbar.style';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { SearchBarContainer, SearchIcon } from "./searchbar.style";
 
 const Searchbar = ({ placeholder }) => {
-    let history = useHistory();
+  let navigate = useNavigate();
 
-    const [ keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState("");
 
-    function handleChange (search) {
-        setKeyword(search);
-    };
+  function handleChange(search) {
+    setKeyword(search);
+  }
 
-    return (
-        <SearchBarContainer>
-            <SearchIcon onClick={() => history.push(`/search/${keyword}`)}/>
-            <input className="input" onChange={(e) => handleChange(e.target.value)} placeholder={placeholder}/>
-        </SearchBarContainer>
-    )
+  return (
+    <SearchBarContainer>
+      <SearchIcon onClick={() => navigate(`/search/${keyword}`)} />
+      <input
+        className="input"
+        onChange={(e) => handleChange(e.target.value)}
+        placeholder={placeholder}
+      />
+    </SearchBarContainer>
+  );
 };
 
 export default Searchbar;
