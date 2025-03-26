@@ -1,11 +1,11 @@
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Store from "../../store";
-import PageTemplate from "../organisms/pageTemplate/pageTemplate";
-import Card from "../molecules/card/card";
-import { fetchCharacter } from "../../actions/character";
+import { useSelector } from "react-redux";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import PageTemplate from "../components/organisms/pageTemplate/pageTemplate";
+import Card from "../components/molecules/card/card";
+import { fetchCharacter } from "../actions/character";
+import Store from "../store";
 
 const Character = ({ match }) => {
   const {

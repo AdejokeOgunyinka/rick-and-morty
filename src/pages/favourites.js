@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Store from "../../store";
-import PageTemplate from "../organisms/pageTemplate/pageTemplate";
-import RowCard from "../molecules/rowCard/rowCard";
-import { removeFromFavourites } from "../../actions/favourites";
+import PageTemplate from "../components/organisms/pageTemplate/pageTemplate";
+import RowCard from "../components/molecules/rowCard/rowCard";
+import { removeFromFavourites } from "../actions/favourites";
+import Store from "../store";
 
 const Favourites = () => {
   let navigate = useNavigate();

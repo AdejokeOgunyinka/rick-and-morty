@@ -1,10 +1,10 @@
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Characters from "./components/pages/characters";
+import Characters from "./pages/characters";
+import Favourites from "./pages/favourites";
+import Character from "./pages/character";
+import SearchResults from "./pages/searchResults";
 import Store from "./store";
-import Favourites from "./components/pages/favourites";
-import Character from "./components/pages/character";
-import SearchResults from "./components/pages/searchResults";
 
 const App = () => {
   return (
