@@ -1,25 +1,41 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Store from "../../store";
-import PageTemplate from "../organisms/pageTemplate/pageTemplate";
-import RowCard from "../molecules/rowCard/rowCard";
-import { fetchSearch } from "../../actions/search";
+import PageTemplate from "../components/organisms/pageTemplate/pageTemplate";
+import RowCard from "../components/molecules/rowCard/rowCard";
+import { fetchCharacters } from "../actions/characters";
+import { addToFavourites } from "../actions/favourites";
+import Store from "../store";
 
-const SearchResults = ({ match }) => {
-  let navigate = useNavigate();
-  const { keyword } = match.params;
+const Characters = () => {
+  const [filteredCharacters, setFilteredCharacters] = useState([]);
 
   const {
-    searchReducer: { searchResults },
+    charactersReducer: { loading, characters, url },
     favouritesReducer: { favourites },
   } = useSelector((state) => state);
 
-  useEffect(() => {
-    Store.dispatch(fetchSearch(keyword));
-  }, [keyword]);
+  let navigate = useNavigate();
+  const [page, setPage] = useState(1);
 
-  const [filteredSearch, setFilteredSearch] = useState([]);
+  useEffect(() => {
+    Store.dispatch(
+      fetchCharacters(`https://rickandmortyapi.com/api/character?page=${page}`)
+    );
+  }, [loading, characters, url, page]);
+
+  const scrollToEnd = () => {
+    setPage(page + 1);
+  };
+
+  window.onscroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.offsetHeight
+    ) {
+      scrollToEnd();
+    }
+  };
 
   const checkIfFavourite = (id) => {
     const favourites_id_set = new Set(
@@ -36,13 +52,13 @@ const SearchResults = ({ match }) => {
 
   return (
     <PageTemplate
-      data={searchResults}
-      filteredData={filteredSearch}
-      setFilteredData={setFilteredSearch}
+      data={characters}
+      filteredData={filteredCharacters}
+      setFilteredData={setFilteredCharacters}
     >
-      {filteredSearch.length === 0
-        ? searchResults.length > 0 &&
-          searchResults.map((character) => {
+      {filteredCharacters.length === 0
+        ? characters.length > 0 &&
+          characters.map((character) => {
             return (
               <RowCard
                 imageUrl={character.image}
@@ -51,13 +67,14 @@ const SearchResults = ({ match }) => {
                 species={character.species}
                 gender={character.gender}
                 key={character.id}
+                onClick={() => Store.dispatch(addToFavourites(character))}
                 onClickCard={() => navigate(`/characters/${character.id}`)}
                 isFavourite={checkIfFavourite(character.id)}
               />
             );
           })
-        : filteredSearch.length > 0 &&
-          filteredSearch.map((character) => {
+        : filteredCharacters.length > 0 &&
+          filteredCharacters.map((character) => {
             return (
               <RowCard
                 imageUrl={character.image}
@@ -66,6 +83,7 @@ const SearchResults = ({ match }) => {
                 species={character.species}
                 gender={character.gender}
                 key={character.id}
+                onClick={() => Store.dispatch(addToFavourites(character))}
                 onClickCard={() => navigate(`/characters/${character.id}`)}
                 isFavourite={checkIfFavourite(character.id)}
               />
@@ -75,4 +93,4 @@ const SearchResults = ({ match }) => {
   );
 };
 
-export default SearchResults;
+export default Characters;
