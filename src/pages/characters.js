@@ -43,11 +43,7 @@ const Characters = () => {
     );
     const favourites_id_list = [...favourites_id_set];
 
-    if (favourites_id_list.includes(id)) {
-      return true;
-    } else {
-      return false;
-    }
+    return favourites_id_list.includes(id);
   };
 
   return (

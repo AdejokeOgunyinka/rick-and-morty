@@ -37,7 +37,7 @@ const Character = ({ match }) => {
   }, [id]);
 
   return (
-    //imageUrl, name, status, species, type, gender, origin, location
+    //imageUrl, name, status, species, type, gender, origin, location are passed to the card component
     fetchCharacterSuccess ? (
       <PageTemplate
         data={characters}
