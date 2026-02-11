@@ -1,37 +1,43 @@
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams, useNavigate } from "react-router-dom";
 import PageTemplate from "../components/organisms/pageTemplate/pageTemplate";
 import RowCard from "../components/molecules/rowCard/rowCard";
-import { fetchSearch } from "../actions/search";
-import Store from "../store";
+import { fetchSearch, selectSearchResults } from "../features/search/searchSlice";
+import { selectFavourites } from "../features/favourites/favouritesSlice";
 
-const SearchResults = ({ match }) => {
-  let navigate = useNavigate();
-  const { keyword } = match.params;
-
-  const {
-    searchReducer: { searchResults },
-    favouritesReducer: { favourites },
-  } = useSelector((state) => state);
-
-  useEffect(() => {
-    Store.dispatch(fetchSearch(keyword));
-  }, [keyword]);
-
+const SearchResults = () => {
   const [filteredSearch, setFilteredSearch] = useState([]);
 
-  const checkIfFavourite = (id) => {
-    const favourites_id_set = new Set(
-      favourites.map((favourite) => favourite.id)
-    );
-    const favourites_id_list = [...favourites_id_set];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { keyword } = useParams();
 
-    if (favourites_id_list.includes(id)) {
-      return true;
-    } else {
-      return false;
-    }
+  const searchResults = useSelector(selectSearchResults);
+  const favourites = useSelector(selectFavourites);
+
+  useEffect(() => {
+    dispatch(fetchSearch(keyword));
+  }, [dispatch, keyword]);
+
+  const checkIfFavourite = (id) => {
+    const favouritesIdSet = new Set(favourites.map((favourite) => favourite.id));
+    return favouritesIdSet.has(id);
+  };
+
+  const renderSearchResults = (results) => {
+    return results.map((character) => (
+      <RowCard
+        imageUrl={character.image}
+        name={character.name}
+        status={character.status}
+        species={character.species}
+        gender={character.gender}
+        key={character.id}
+        onClickCard={() => navigate(`/characters/${character.id}`)}
+        isFavourite={checkIfFavourite(character.id)}
+      />
+    ));
   };
 
   return (
@@ -41,36 +47,8 @@ const SearchResults = ({ match }) => {
       setFilteredData={setFilteredSearch}
     >
       {filteredSearch.length === 0
-        ? searchResults.length > 0 &&
-          searchResults.map((character) => {
-            return (
-              <RowCard
-                imageUrl={character.image}
-                name={character.name}
-                status={character.status}
-                species={character.species}
-                gender={character.gender}
-                key={character.id}
-                onClickCard={() => navigate(`/characters/${character.id}`)}
-                isFavourite={checkIfFavourite(character.id)}
-              />
-            );
-          })
-        : filteredSearch.length > 0 &&
-          filteredSearch.map((character) => {
-            return (
-              <RowCard
-                imageUrl={character.image}
-                name={character.name}
-                status={character.status}
-                species={character.species}
-                gender={character.gender}
-                key={character.id}
-                onClickCard={() => navigate(`/characters/${character.id}`)}
-                isFavourite={checkIfFavourite(character.id)}
-              />
-            );
-          })}
+        ? searchResults.length > 0 && renderSearchResults(searchResults)
+        : filteredSearch.length > 0 && renderSearchResults(filteredSearch)}
     </PageTemplate>
   );
 };
